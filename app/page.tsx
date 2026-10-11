@@ -1,8 +1,10 @@
 import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Projects } from '@/components/sections/Projects'
+import { Achievements } from '@/components/sections/Achievements'
 import { Skills } from '@/components/sections/Skills'
 import { Experience } from '@/components/sections/Experience'
+import { Beyond } from '@/components/sections/Beyond'
 import { Contact } from '@/components/sections/Contact'
 
 export default function Home() {
@@ -14,9 +16,13 @@ export default function Home() {
       <div className="section-divider" aria-hidden="true" />
       <Projects />
       <div className="section-divider" aria-hidden="true" />
+      <Achievements />
+      <div className="section-divider" aria-hidden="true" />
       <Skills />
       <div className="section-divider" aria-hidden="true" />
       <Experience />
+      <div className="section-divider" aria-hidden="true" />
+      <Beyond />
       <div className="section-divider" aria-hidden="true" />
       <Contact />
 
@@ -39,7 +45,7 @@ export default function Home() {
             color: 'var(--dim)',
           }}
         >
-          © 2025 Yerbolat Rgalbek. Built with intent from Almaty, Kazakhstan.
+          © 2026 Yerbolat Rgalbek. Built with intent from Almaty, Kazakhstan.
         </span>
         <span
           style={{

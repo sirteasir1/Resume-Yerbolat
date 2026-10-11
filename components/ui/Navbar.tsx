@@ -5,9 +5,10 @@ import { SITE_CONFIG } from '@/lib/data'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Milestones', href: '#achievements' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Beyond', href: '#beyond' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -15,11 +16,30 @@ export function Navbar() {
   const navRef = useRef<HTMLElement>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Scroll-spy: highlight the section currently in view
+  useEffect(() => {
+    const ids = NAV_LINKS.map(l => l.href.slice(1))
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) setActive(e.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    )
+    ids.forEach(id => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
   }, [])
 
   const handleLink = (href: string) => {
@@ -85,27 +105,33 @@ export function Navbar() {
         }}
           className="nav-desktop"
         >
-          {NAV_LINKS.map(link => (
+          {NAV_LINKS.map(link => {
+            const isActive = active === link.href.slice(1)
+            return (
             <li key={link.href}>
               <a
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleLink(link.href) }}
                 style={{
+                  position: 'relative',
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.78rem',
                   letterSpacing: '0.08em',
-                  color: 'var(--fg-muted)',
+                  color: isActive ? 'var(--accent)' : 'var(--fg-muted)',
                   textDecoration: 'none',
                   transition: 'color 0.2s',
                   textTransform: 'uppercase',
+                  paddingBottom: 4,
+                  borderBottom: isActive ? '1px solid var(--accent)' : '1px solid transparent',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-muted)')}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'var(--fg)' }}
+                onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'var(--fg-muted)' }}
               >
                 {link.label}
               </a>
             </li>
-          ))}
+            )
+          })}
         </ul>
 
         {/* CTA */}

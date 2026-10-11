@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { HERO_DATA, SITE_CONFIG } from '@/lib/data'
+import { CountUp, Magnetic } from '@/components/ui/Interactive'
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -150,96 +151,86 @@ export function Hero() {
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <a
-              href="#projects"
-              onClick={e => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }) }}
-              style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
-                letterSpacing: '0.08em', textDecoration: 'none',
-                background: 'var(--accent)', color: '#000',
-                padding: '0.8rem 1.8rem', borderRadius: 4,
-                fontWeight: 700, transition: 'transform 0.2s, box-shadow 0.2s',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,212,255,0.4)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-            >
-              View Work ↗
-            </a>
-            <a
-              href={SITE_CONFIG.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
-                letterSpacing: '0.06em', textDecoration: 'none',
-                color: 'var(--fg)', border: '1px solid var(--border)',
-                padding: '0.8rem 1.8rem', borderRadius: 4,
-                transition: 'border-color 0.2s, color 0.2s',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
-                e.currentTarget.style.color = 'var(--fg)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.color = 'var(--fg)'
-              }}
-            >
-              GitHub
-            </a>
+            <Magnetic strength={0.4}>
+              <a
+                href="#projects"
+                onClick={e => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }) }}
+                style={{
+                  fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
+                  letterSpacing: '0.08em', textDecoration: 'none',
+                  background: 'var(--accent)', color: '#000',
+                  padding: '0.8rem 1.8rem', borderRadius: 4,
+                  fontWeight: 700, transition: 'box-shadow 0.25s',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.boxShadow = '0 8px 34px rgba(0,212,255,0.45)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.boxShadow = 'none'
+                }}
+              >
+                View Work ↗
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.3}>
+              <a
+                href={SITE_CONFIG.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
+                  letterSpacing: '0.06em', textDecoration: 'none',
+                  color: 'var(--fg)', border: '1px solid var(--border)',
+                  padding: '0.8rem 1.8rem', borderRadius: 4,
+                  transition: 'border-color 0.2s, color 0.2s',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'
+                  e.currentTarget.style.color = 'var(--accent)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                  e.currentTarget.style.color = 'var(--fg)'
+                }}
+              >
+                GitHub
+              </a>
+            </Magnetic>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="hero-reveal d5" style={{
-          display: 'flex', gap: 'clamp(2rem, 5vw, 5rem)',
+        <div className="hero-reveal d5 hero-stats" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+          gap: 'clamp(1.5rem, 4vw, 3.5rem)',
           borderTop: '1px solid var(--border)', paddingTop: '2rem',
-          flexWrap: 'wrap',
         }}>
           {HERO_DATA.stats.map(stat => (
             <div key={stat.label}>
+              <CountUp
+                end={stat.number}
+                prefix={stat.prefix}
+                suffix={stat.suffix}
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  color: 'var(--fg)', letterSpacing: '-0.02em',
+                  lineHeight: 1, display: 'inline-block',
+                }}
+              />
               <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                color: 'var(--fg)', letterSpacing: '-0.02em',
-                lineHeight: 1,
-              }}>
-                {stat.number}
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
-                color: 'var(--fg-muted)', letterSpacing: '0.08em',
-                marginTop: '0.3rem', textTransform: 'uppercase',
+                fontFamily: 'var(--font-mono)', fontSize: '0.72rem',
+                color: 'var(--fg-muted)', letterSpacing: '0.06em',
+                marginTop: '0.4rem', textTransform: 'uppercase',
               }}>
                 {stat.label}
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div style={{
-        position: 'absolute', bottom: '2.5rem', left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem',
-        animation: 'float 3s ease-in-out infinite',
-      }}>
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: '0.65rem',
-          letterSpacing: '0.15em', color: 'var(--fg-muted)',
-          textTransform: 'uppercase',
-        }}>Scroll</span>
-        <div style={{
-          width: 1, height: 40,
-          background: 'linear-gradient(to bottom, var(--fg-muted), transparent)',
-        }} />
       </div>
 
       <style>{`

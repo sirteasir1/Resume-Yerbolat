@@ -103,6 +103,33 @@ export function About() {
               </div>
             ))}
           </div>
+
+          {/* Portrait / building shot */}
+          <div className="rv d4" style={{
+            marginTop: '1rem', position: 'relative',
+            borderRadius: 12, overflow: 'hidden',
+            border: '1px solid var(--border-bright)',
+            aspectRatio: '16 / 10',
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ABOUT_DATA.portrait}
+              alt="Yerbolat building late at night"
+              loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to top, rgba(6,6,8,0.6), transparent 55%)',
+            }} />
+            <div style={{
+              position: 'absolute', bottom: 14, left: 16,
+              fontFamily: 'var(--font-mono)', fontSize: '0.68rem',
+              letterSpacing: '0.08em', color: 'var(--fg-muted)',
+            }}>
+              <span style={{ color: 'var(--accent)' }}>$</span> shipping, 2am
+            </div>
+          </div>
         </div>
 
         {/* Right — paragraphs + status */}
