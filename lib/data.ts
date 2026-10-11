@@ -13,7 +13,7 @@ export const HERO_DATA = {
   availableText: 'Open to opportunities · Almaty, Kazakhstan',
   name: ['YERBOLAT', 'RGALBEK'],
   tagline:
-    "16 years old. Building AI products that ship, scale, and win.\nFounder, engineer, and 2× offer holder — out of Almaty, Kazakhstan.",
+    "17 years old. Building AI products that ship, scale, and win.\nFounder, engineer, and 2× offer holder — out of Almaty, Kazakhstan.",
   stats: [
     { number: 20, prefix: 'TOP ', suffix: '', label: 'nFactorial Demo Day · of 3000+' },
     { number: 2, prefix: '', suffix: '', label: 'Offers from top CA companies' },
@@ -25,15 +25,15 @@ export const HERO_DATA = {
 export const ABOUT_DATA = {
   headline: "I don't wait\nto grow up.\nI build now.",
   paragraphs: [
-    "I'm a <strong>16-year-old AI engineer and founder</strong> from Almaty, Kazakhstan. In roughly a year I've shipped products used by thousands, earned <strong>two offers from leading Central-Asian companies</strong>, and made it through the region's most competitive startup incubator.",
+    "I'm a <strong>17-year-old AI engineer and founder</strong> from Almaty, Kazakhstan. In two years in the industry I've shipped products used by thousands, earned <strong>two offers from leading Central-Asian companies</strong>, and made it through the region's most competitive startup incubator.",
     "I got into <strong>nFactorial Incubator</strong> — the largest in Central Asia — as one of the <strong>Top 76 of 3000+ applicants</strong>, then pushed my startup <strong>WearIt</strong> all the way to the <strong>Top 20 at Demo Day</strong>. I've also taken <strong>AgroVoice</strong> to the republican stage and founded <strong>Admitly</strong>, an AI admissions ecosystem for students across Eurasia.",
     "Off the keyboard I captain my school's <strong>basketball and volleyball</strong> teams and lead my <strong>debate and hackathon</strong> squads. I move fast, think deep, and build things that matter — the spark doesn't wait.",
   ],
   cards: [
     { number: '5+', label: 'Products shipped' },
-    { number: '1yr', label: 'In the industry' },
+    { number: '2yrs', label: 'In the industry' },
     { number: '1K+', label: 'Users impacted', color: 'var(--accent-2)' },
-    { number: '16', label: 'Years old 🔥' },
+    { number: '17', label: 'Years old 🔥' },
   ],
   status: {
     icon: '⚡',
